@@ -1,0 +1,22 @@
+<div class ='container-fluid'>
+	<input type='text' class='box' ng-model='headingName'>
+	<button class='btn-primary' ng-click="addHeading()">Add</button>
+	<div class="note-area">
+	      <div class='heading' ng-repeat="heading in headings|orderBy:'id'">
+	      	<span class= 'headingName'>{{heading.name}}</span>
+	      	<span class= 'deleteButton glyphicon glyphicon-remove' ng-click="removeHeading(heading.id)"></span>
+	      	<br>
+	      	<input type='text' class='box' ng-model='heading.taskName' ng-required='true'>
+	      	<span class= 'addButton glyphicon glyphicon-plus' ng-click="addTask(heading.id, heading.taskName)"> Add Task...</span>
+	       	<div class="task" ng-show = "heading.tasks.length" ng-repeat = 'task in heading.tasks'>
+		       	<span class= 'taskName' ng-show='!(task.editMode)'>{{task.name}}</span>
+		       	<input type='text' ng-show="task.editMode" class="note-area" ng-model="task.name"><br>
+		       	<div class='taskContent' ng-show='!(task.editMode)'>{{task.content}}</div>
+		       	<input type='text' ng-show="task.editMode" class="note-area" ng-model="task.content"><br>
+		       	<span class= 'addButton glyphicon glyphicon-floppy-disk' ng-show='task.editMode' ng-click="saveTask(heading.id, task.id, task.name, task.content)">Save</span>
+		       	<span class= 'addButton glyphicon glyphicon-edit' ng-show='!(task.editMode)' ng-click="editTask(task)">Edit</span>
+		       	<span class= 'addButton glyphicon glyphicon-remove' ng-click="removeTask(heading.id,task.id)">Remove</span>
+	      	</div>
+	      </div>
+	</div>
+</div>
