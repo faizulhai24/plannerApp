@@ -2,8 +2,9 @@ app.factory('plannerFactory', function(){
 	return{
 		put:function(heading,task){
 			localStorage.setItem('heading' + heading.id, JSON.stringify(heading));
-			if (heading.task == undefined){
-				var headCount = localStorage.getItem(localStorage.key('headCount'));
+			if (heading.task === undefined){
+				var headCount = parseInt(localStorage.getItem(localStorage.key('headCount')));
+				headCount = headCount?headCount:0;
 				headCount++;
 				localStorage.setItem('headCount', headCount);
 			}
